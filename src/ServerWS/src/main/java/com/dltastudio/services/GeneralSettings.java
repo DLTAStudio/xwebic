@@ -30,6 +30,11 @@ public class GeneralSettings implements ServletContextListener {
     private boolean allowCrossOriginAllowed;
 
     /**
+     * Port number for HSQLDB  Server
+     */
+    private int HSQLDBServerPort;
+
+    /**
      * singleton instance
      */
     private static GeneralSettings instance;
@@ -53,6 +58,7 @@ public class GeneralSettings implements ServletContextListener {
             initialContext = new InitialContext();
             XCodeServerBaseURL = (String) initialContext.lookup("java:comp/env/xwebic.baseurl");
             allowCrossOriginAllowed = (Boolean)initialContext.lookup("java:comp/env/xwebic.allowcrossorigin");
+            HSQLDBServerPort=(Integer)initialContext.lookup("java:comp/env/xwebic.hsqldbPort");
             databaseInstance = new DatabaseInstance(event.getServletContext());
             System.out.println("ServletContextListener started");
         }
@@ -60,6 +66,7 @@ public class GeneralSettings implements ServletContextListener {
             XCodeServerBaseURL="";
             allowCrossOriginAllowed=false;
             databaseInstance=null;
+            HSQLDBServerPort=9001;
         }
         if (null!=initialContext) {
             try {
@@ -101,4 +108,13 @@ public class GeneralSettings implements ServletContextListener {
     static public boolean isCrossOriginAllowed() {
         return getGeneralSettings().allowCrossOriginAllowed;
     }
+
+    /**
+     * Return port number for HSQLDB
+     * @return HSQLDB Port
+     */
+    static public int getHSQLDBServerPort() {
+        return getGeneralSettings().HSQLDBServerPort;
+    }
+
 }

@@ -36,7 +36,8 @@ public class DatabaseInstance  {
 
             p.setProperty("server.database.0", databaseFile);
             p.setProperty("server.dbname.0", "xcodeAuthDB");
-            p.setProperty("server.port", "9001");
+
+            p.setProperty("server.port",String.valueOf(GeneralSettings.getHSQLDBServerPort()));
             server = new Server();
             server.setProperties(p);
             server.setLogWriter(null); // can use custom writer
@@ -68,7 +69,9 @@ public class DatabaseInstance  {
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection connection=null;
         Class.forName("org.hsqldb.jdbc.JDBCDriver" );
-        connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/xcodeAuthDB", "SA", "");
+        String serverPort=String.valueOf(GeneralSettings.getHSQLDBServerPort());
+
+        connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost:"+serverPort+"/xcodeAuthDB", "SA", "");
         connection.setAutoCommit(true);
         return connection;
     }
