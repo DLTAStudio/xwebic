@@ -1,0 +1,1 @@
+"use strict";describe("myApp.version module",function(){beforeEach(module("myApp.version")),describe("version service",function(){it("should return current version",inject(function(a){expect(a).toEqual("0.1")}))})});

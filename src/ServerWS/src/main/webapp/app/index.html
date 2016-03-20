@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="app-module" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="app-module" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="app-module" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="app-module" class="no-js"> <!--<![endif]-->
+<head>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>xWebIC</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
+  <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
+  <link rel="stylesheet" href="css/app.css">
+
+    <script src="js/modernizr-2.8.3.min.js"></script>
+
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/moment-duration-format/lib/moment-duration-format.js"></script>
+  <script src="bower_components/Chart.js/Chart.js"></script>
+  <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.js"></script>
+  <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+
+    <script src="modules/ws_module.js"></script>
+    <script src="environnement/shared_module.js"></script>
+  <script src="modules/loading_module.js"></script>
+    <script src="modules/login_module.js"></script>
+    <script src="modules/bot_module.js"></script>
+    <script src="modules/integration_module.js"></script>
+  <script src="app.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+
+</head>
+<body>
+
+  <div ng-controller="ApplicationCtrl as appCtrl">
+      <div ng-view>
+        </div>
+  </div>
+
+</body>
+</html>

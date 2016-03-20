@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context reloadable="true">
+    <Environment name="xwebic.baseurl" type="java.lang.String" value="https://myxcodeserver.com" />
+    <Environment name="xwebic.allowcrossorigin" type="java.lang.Boolean" value="false" />
+</Context>

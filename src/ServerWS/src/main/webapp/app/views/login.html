@@ -1,0 +1,20 @@
+<div class="main" ng-controller="LoginCtrl as ctrlLogin">
+    <form role="form" name="loginForm" novalidate="true">
+        <div class="form-group">
+            <label for="inputUsername">{{ 'LOGIN' | translate }}</label>
+            <input type="text" class="form-control" ng-disabled="ctrlLogin.loading" ng-model="ctrlLogin.login" name="login" id="inputUsername" required>
+            <div ng-messages="loginForm.login.$dirty && loginForm.login.$error" style="color:red" >
+                <div ng-message="required">{{'REQUIRED' | translate}}</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">{{ 'PASSWORD' | translate }}</label>
+            <input type="password" class="form-control" ng-disabled="ctrlLogin.loading" name="password" id="inputPassword" ng-model="ctrlLogin.password" required>
+            <div ng-messages="loginForm.password.$dirty && loginForm.password.$error" style="color:red" >
+                <div ng-message="required">{{'REQUIRED' | translate}}</div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid || ctrlLogin.loading" ng-click="ctrlLogin.onLogin();">{{'LOG_IN' | translate}}</button>
+        <h4 ng-show="ctrlLogin.message" class="text-center alert-warning">{{ctrlLogin.message}}</h4>
+    </form>
+</div>

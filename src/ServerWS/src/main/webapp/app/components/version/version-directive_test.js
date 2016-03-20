@@ -1,0 +1,1 @@
+"use strict";describe("myApp.version module",function(){beforeEach(module("myApp.version")),describe("app-version directive",function(){it("should print current version",function(){module(function(a){a.value("version","TEST_VER")}),inject(function(a,b){var c=a("<span app-version></span>")(b);expect(c.text()).toEqual("TEST_VER")})})})});

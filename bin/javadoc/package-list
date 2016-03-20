@@ -1,0 +1,6 @@
+com.dltastudio
+com.dltastudio.exceptions
+com.dltastudio.model
+com.dltastudio.services
+com.dltastudio.ws
+org.glassfish.jersey.httppatch

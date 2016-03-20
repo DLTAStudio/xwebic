@@ -1,0 +1,146 @@
+<div ng-controller="MainBotCtrl as mainBotCtrl">
+<table width="100%">
+    <tr>
+    <td style="vertical-align:top;padding-left:10px;padding-right:10px;width:200px;min-width:200px" ng-controller="ListBotsCtrl as listCtrl" >
+        <div class="main">
+            <h4 class="text-center">{{'BOTS' | translate}}</h4>
+            <ul class="nav nav-pills nav-stacked">
+                <li ng-repeat="bot in listCtrl.bots" ng-click="listCtrl.onBotClicked($index);" ng-class="{active:($index==listCtrl.currentIndex)}">
+                    <a><label>{{bot.name}}</label></a>
+                </li>
+                <li class=active" ng-show="(0==listCtrl.bots.length)">
+                    <a><label>{{ 'NO_BOT_ON_SERVER' | translate }}</label></a>
+                </li>
+            </ul>
+        </div>
+    </td>
+
+    <td style="vertical-align:top;padding-left:10px;padding-right:10px;" >
+        <div>
+            <button type="button" class="close" aria-label="Close" ng-click="appCtrl.onDisconnectButton();">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div ng-controller="ListIntegrationCtrl as integrationCtrl">
+                <div ng-show="integrationCtrl.botId.length>0">
+                    <h4 class="text-center">{{ 'INTEGRATIONS' | translate }}</h4>
+                    <span class="btn glyphicon glyphicon-refresh pull-left" ng-click="integrationCtrl.onRefreshButton()"></span>
+                    <button type="button" class="btn btn-link pull-right" ng-click="integrationCtrl.onIntegrateButton()">{{ 'INTEGRATE_NOW' | translate }}</button>
+                    <br/>
+                    <div></div>
+                    <h5 class="text-left">&nbsp;</h5>
+                    <h5 class="text-left">{{ 'LAST_BUILD_STATUS' | translate}} :
+
+                    <span ng-style="integrationCtrl.statusColorStyle(integrationCtrl.lastIntegrationResult)">{{integrationCtrl.lastIntegrationResult | translate}}</span>
+                    </h5>
+                    <table border="1" class="table table-striped">
+                        <col width="50%">
+                        <col width="50%">
+
+                        <tr>
+                           <td colspan="2" style="text-align: center;">
+                               <div style="width:50%;margin: auto;" >
+                               <h4>{{ 'BUILD' | translate}}</h4>
+                               <canvas id="build_chart" class="chart chart-line" chart-data="integrationCtrl.build_data"
+                                       chart-labels="integrationCtrl.build_labels"
+                                       chart-series="integrationCtrl.build_series"
+                                       chart-legend="true"
+                                       chart-colours="[{
+                                   fillColor: 'rgba(255,66,70, 0.0)',
+                                   strokeColor: 'rgba(255,66,70, 0.8)',
+                                   highlightFill: 'rgba(255,66,70, 0.8)',
+                                   highlightStroke: 'rgba(255,66,70, 0.8)'
+                                   },
+                                   {
+                                   fillColor: 'rgba(255,215,37, 0)',
+                                   strokeColor: 'rgba(255,215,37, 0.8)',
+                                   highlightFill: 'rgba(255,215,37, 0.8)',
+                                   highlightStroke: 'rgba(255,215,37, 0.8)'
+                                   }
+                                   ];">
+                               </canvas>
+                               </div>
+
+                           </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">
+                                <h4>{{ 'CODE_COVERAGE' | translate }}</h4>
+                                <canvas id="coverage_chart" class="chart chart-line" chart-data="integrationCtrl.coverage_data"
+                                    chart-labels="integrationCtrl.coverage_labels"
+                                    chart-series="integrationCtrl.coverage_series"
+                                        chart-legend="true"
+                                        chart-colours="[
+                                   {
+                                   fillColor: 'rgba(135,255,99, 0.8)',
+                                   strokeColor: 'rgba(135,255,99, 0.8)',
+                                   highlightFill: 'rgba(135,255,99, 0.8)',
+                                   highlightStroke: 'rgba(135,255,99, 0.8)'
+                                   }
+                                   ];">
+                                </canvas>
+                            </td>
+                            <td style="text-align: center;">
+                                <h4>{{'TESTS' | translate }}</h4>
+                                <canvas id="tests_chart" class="chart chart-bar" chart-data="integrationCtrl.tests_data"
+                                    chart-labels="integrationCtrl.tests_labels"
+                                    chart-series="integrationCtrl.tests_series"
+                                        chart-legend="true"
+                                        chart-colours="[
+                                   {
+                                   fillColor: 'rgba(135,255,99, 0.8)',
+                                   strokeColor: 'rgba(135,255,99, 0.8)',
+                                   highlightFill: 'rgba(135,255,99, 0.8)',
+                                   highlightStroke: 'rgba(135,255,99, 0.8)'
+                                   },
+                                   {
+                                   fillColor: 'rgba(255,66,70, 0.8)',
+                                   strokeColor: 'rgba(255,66,70, 0.8)',
+                                   highlightFill: 'rgba(255,66,70, 0.8)',
+                                   highlightStroke: 'rgba(255,66,70, 0.8)'
+                                   }
+
+                                   ];">
+
+                                </canvas>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="well" >
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>{{ 'START' | translate}}</th>
+                                <th>{{ 'DURATION' | translate}}</th>
+                                <th>{{ 'STATUS' | translate}}</th>
+                                <th>{{ 'RESULT' | translate}}</th>
+                                <th>{{ 'DOWNLOAD' | translate}}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="integration in integrationCtrl.integrations">
+                                <td> {{integration.number}} </td>
+                                <td> {{integration.getFormattedStartTime() }} </td>
+                                <td> {{integration.getFormattedDuration() }} </td>
+                                <td style="font-weight:bold;"> {{integration.currentStep | translate }} </td>
+                                <td ng-style="integrationCtrl.statusColorStyle(integration.result)"> {{integration.result  | translate}} </td>
+                                <td>
+                                    <!-- Pas supporté par Xcode Server 7.2
+                                    <a ng-click="integrationCtrl.onDownloadAsset(integration.buildServiceLog,true);" ng-show="integration.buildServiceLog.length>0">Build Service log</a><br/>
+                                    <a ng-click="integrationCtrl.onDownloadAsset(integration.xcodebuildLog,true);"ng-show="integration.xcodebuildLog.length>0">Build log</a><br/>
+                                    <a ng-click="integrationCtrl.onDownloadAsset(integration.sourceControlLog,true);"ng-show="integration.sourceControlLog.length>0">Source control log</a><br/>
+                                    <a ng-click="integrationCtrl.onDownloadAsser(integration.xcodebuildOutput,false);"ng-show="integration.xcodebuildOutput.length>0">Output</a><br/>
+                                    -->
+                                   <a href="{{integrationCtrl.getIntegrationURL(integration)}}">{{'BUILD_RESULT' | translate}}</a>
+                                  </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </td>
+</tr>
+    </table>
+</div>
