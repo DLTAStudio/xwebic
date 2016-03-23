@@ -3,7 +3,7 @@
 ##Introduction
 XWebIC is a Web wrapper for XCode Server API. It provides a more user friendly UI based on Angular JS.
 
-## How does it work
+## How does it works
 XCode Server 6 had a great Web UI, but release 7 downgraded to a useless UI. In the meantime, Apple published a REST API (which is still at beta stage) : 
 https://developer.apple.com/library/ios/documentation/Xcode/Conceptual/XcodeServerAPIReference/index.html
  
