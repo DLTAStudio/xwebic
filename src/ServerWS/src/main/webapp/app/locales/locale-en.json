@@ -43,7 +43,10 @@
   "Invalid login/password":"Invalid login/password",
   "completed":"Completed",
   "pending":"Pending",
-
+  "building":"En cours de construction",
+  "checkout":"Récupération des sources",
+  "testing":"En cours de test",
+  "pending":"En attente",
   "Coverage":"Coverage",
   "Tests Count":"Tests Count",
   "Test Failure count":"Test Failure count",

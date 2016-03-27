@@ -1,5 +1,5 @@
 /**
- * Created by dscreve on 25/01/2016.
+ * Module for shared data
  */
 
 (function() {
